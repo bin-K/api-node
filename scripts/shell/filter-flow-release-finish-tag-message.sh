@@ -33,19 +33,11 @@ CHANGELOG_MESSAGE=`pnpm cross-env PACKAGE=$PACKAGE PREVIOUS_TAG=$PREVIOUSTAG CUR
 # 判断是否需要rebase，落后于target branch合并会失败
 [ $BEHIND_COMMIT -ne 0 ] && { echo 'Please rebase develop before finishing this branch'; exit 1; }
 
-isMono=$(echo $VERSION | grep "mono")
+# 更新版本号
+pnpm version --new-version ${PACKAGE_VERSION/v/} --no-git-tag-version > /dev/null
+TEMP_CHANGELOG_MESSAGE=$(echo "### $PACKAGE_VERSION";git log -1 --pretty="#### %ci";printf "\n";echo "${CHANGELOG_MESSAGE}";printf "\n---\n\n";cat ./changelogs/CHANGELOG.md)
+echo "$TEMP_CHANGELOG_MESSAGE" > ./changelogs/CHANGELOG.md
 
-# 判断是否为mono的更新，是的话changelog会更新到changelogs目录的mono.md内
-if [[ "$isMono" != "" ]]; then
-    # 更新版本号
-    pnpm version --new-version ${PACKAGE_VERSION/v/} --no-git-tag-version > /dev/null
-    TEMP_CHANGELOG_MESSAGE=$(echo "### $PACKAGE_VERSION";git log -1 --pretty="#### %ci";printf "\n";echo "${CHANGELOG_MESSAGE}";printf "\n---\n\n";cat ./changelogs/mono.md)
-    echo "$TEMP_CHANGELOG_MESSAGE" > ./changelogs/mono.md
-# 否则更新到changelogs目录对应package的package.md内
-else
-    TEMP_CHANGELOG_MESSAGE=$(echo "### $PACKAGE_VERSION";git log -1 --pretty="#### %ci";printf "\n";echo "${CHANGELOG_MESSAGE}";printf "\n---\n\n";cat ./changelogs/$PACKAGE.md)
-    echo "$TEMP_CHANGELOG_MESSAGE" > ./changelogs/$PACKAGE.md
-fi
 git add . > /dev/null
 git commit --amend --no-edit --no-verify > /dev/null
 
