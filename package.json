@@ -16,7 +16,7 @@
 		"conventional-changelog-cli": "^2.2.2",
 		"conventional-changelog-custom-config": "^0.3.1",
 		"cz-lerna-changelog": "^2.0.3",
-		"eslint": "^9.13.0",
+		"eslint": "^8.57.0",
 		"eslint-config-standard": "^17.1.0",
 		"eslint-define-config": "^2.1.0",
 		"eslint-plugin-import": "^2.31.0",
@@ -45,13 +45,13 @@
 	"scripts": {
 		"init": "sh ./scripts/shell/init.sh --all",
 		"dev": "nodemon ./src/main.js",
-		"lint:eslint": "eslint .",
+		"lint": "eslint --ext .js,.jsx,.vue,.ts,.tsx ./",
 		"lint-staged": "lint-staged",
 		"prepare": "husky"
 	},
 	"lint-staged": {
-		"src/**/*.{js,jsx,ts,tsx,vue}": [
-			"eslint ."
+		"*.{js,jsx,ts,tsx,vue}": [
+			"pnpm lint"
 		]
 	},
 	"config": {
