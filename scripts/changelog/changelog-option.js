@@ -23,7 +23,6 @@ if (authorName && authorEmail === false) {
 	gitUserInfo = 'by: **{{authorName}}**'
 }
 if (authorName === false && authorEmail) {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 	gitUserInfo = 'by: ({{authorEmail}})'
 }
 
