@@ -1,13 +1,22 @@
+const path = require('path')
+
 const Router = require('koa-router')
 
-const userRouter = require('./user')
+const { readFile } = require('../utils')
 const { getIndex } = require('../controller')
 
-const indexRouter = new Router({ prefix: '/' })
+// #region 路由声明
+const router = new Router()
+router.get('/', getIndex)
+// #endregion
 
-indexRouter.get('/', getIndex)
+// #region 注册路由
+readFile(path.resolve(__dirname, './'), (fileName) => {
+	if (fileName !== path.resolve(__dirname, './index.js')) {
+		const r = require(fileName)
+		router.use(r.routes())
+	}
+})
+// #endregion
 
-module.exports = {
-	indexRouter,
-	userRouter,
-}
+module.exports = router
