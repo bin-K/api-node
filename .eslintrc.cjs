@@ -1,4 +1,7 @@
-module.exports = {
+// eslint-define-config可以帮助我们做语法提示
+const { defineConfig } = require('eslint-define-config')
+
+module.exports = defineConfig({
 	// ESLint 一旦发现配置文件中有 "root": true，它就会停止在父级目录中寻找。
 	root: true,
 	// 解析器
@@ -16,13 +19,10 @@ module.exports = {
 	},
 	// 启用的规则
 	extends: ['plugin:vue/vue3-recommended', 'plugin:@typescript-eslint/recommended', 'standard'],
-
-	ignores: ['node_modules', '.vscode', '.idea', 'dist', '.eslintrc.js'],
-	files: ['**/*.{js}'],
 	rules: {
 		quotes: ['error', 'single'],
-		'@typescript-eslint/no-require-imports': 'off',
 		'@typescript-eslint/ban-ts-ignore': 'off',
+		'@typescript-eslint/no-require-imports': 'off',
 		'@typescript-eslint/no-unused-expressions': 'off',
 		'@typescript-eslint/explicit-function-return-type': 'off',
 		'@typescript-eslint/no-explicit-any': 'off',
@@ -49,7 +49,7 @@ module.exports = {
 			},
 		],
 		'no-tabs': 'off',
-		'no-mixed-spaces-and-tabs': 'off',
+		'no-new': 'off',
 		indent: 'off',
 		'vue/custom-event-name-casing': 'off',
 		'vue/html-indent': 'off',
@@ -61,4 +61,4 @@ module.exports = {
 		'comma-dangle': 'off',
 		camelcase: 'off',
 	},
-}
+})

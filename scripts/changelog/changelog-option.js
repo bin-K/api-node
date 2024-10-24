@@ -5,6 +5,7 @@ const compareFunc = require('compare-func')
 let pkgJson = {}
 try {
 	pkgJson = require(path.join(__dirname, '../../package.json'))
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 } catch (err) {
 	console.error('no root package.json found')
 }
@@ -23,6 +24,7 @@ if (authorName && authorEmail === false) {
 	gitUserInfo = 'by: **{{authorName}}**'
 }
 if (authorName === false && authorEmail) {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 	gitUserInfo = 'by: ({{authorEmail}})'
 }
 
