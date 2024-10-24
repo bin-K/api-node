@@ -1,7 +1,7 @@
 module.exports = {
-	userCreateSuccess: {
+	success: {
 		code: 0,
-		message: '用户注册成功',
+		message: '',
 		result: {},
 	},
 }

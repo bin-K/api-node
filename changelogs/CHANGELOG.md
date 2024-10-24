@@ -1,3 +1,17 @@
+### v1.0.2
+#### 2024-10-25 00:39:00 +0800
+
+### Code Refactoring
+
+* **api-node:** 调整eslint版本为8  ([40801a2](https://github.com/bin-K/api-node/commit/40801a2)) by: **KuangZhiBin**
+
+
+### Features
+
+* **api-node:** 添加登陆接口和更改密码接口  ([9bf750b](https://github.com/bin-K/api-node/commit/9bf750b)) by: **KuangZhiBin**
+
+---
+
 ### v1.0.1
 #### 2024-10-23 23:59:15 +0800
 
